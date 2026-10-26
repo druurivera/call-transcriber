@@ -1,7 +1,8 @@
 # Windows equivalent of process_call.sh.
 # One shot: transcribe a call recording, run the analysis pass, open the finished note.
 #
-#   .\process_call.ps1 -Audio "C:\Users\you\Downloads\call.m4a" -Prospect "Arcenith"
+# Windows blocks running .ps1 files by default, so invoke it with:
+#   powershell -ExecutionPolicy Bypass -File .\process_call.ps1 -Audio "C:\Users\you\Downloads\call.m4a" -Prospect "Arcenith"
 
 param(
     [Parameter(Mandatory = $true)][string]$Audio,

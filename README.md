@@ -36,6 +36,17 @@ Everywhere below that says `./.venv/bin/python script.py`, run
 `record.ps1` are the Windows equivalents of `process_call.sh` and
 `record.sh`; the AppleScript droplet app (`Call Transcriber.app`) is Mac only.
 
+**Running the .ps1 scripts.** Windows blocks running `.ps1` files by default
+("running scripts is disabled on this system"). Don't change your system
+security policy for this, just run them with the bypass flag:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\process_call.ps1 -Audio call.m4a -Prospect "Name"
+powershell -ExecutionPolicy Bypass -File .\record.ps1 -Name "Arcenith"
+```
+
+This only affects that one invocation, nothing permanent gets changed.
+
 Model downloads itself on first run, about 1.6GB, cached in `~/.cache/huggingface`
 (`%USERPROFILE%\.cache\huggingface` on Windows).
 

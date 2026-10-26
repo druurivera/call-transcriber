@@ -1,5 +1,8 @@
 """Whisper engine wrapper. MLX (Apple GPU) primary, faster-whisper (CPU) fallback."""
 import os
+import wave
+
+import numpy as np
 
 TAGLISH_PRIMER = (
     "Discovery call recording. The speakers switch between English and Tagalog. "
@@ -29,11 +32,26 @@ def _mlx(path, language, prompt, model):
     return segs, r.get("language", language)
 
 
+def _wav_to_array(path):
+    """Read a 16 bit PCM wav straight into a float32 array, bypassing
+    faster-whisper's PyAV decode_audio: newer PyAV dropped the
+    metadata_errors kwarg it calls av.open() with, so any string/file
+    path crashes. An ndarray skips that call entirely."""
+    with wave.open(path, "rb") as w:
+        raw = w.readframes(w.getnframes())
+        channels = w.getnchannels()
+    data = np.frombuffer(raw, dtype=np.int16).astype(np.float32) / 32768.0
+    if channels > 1:
+        data = data.reshape(-1, channels).mean(axis=1)
+    return data
+
+
 def _faster(path, language, prompt, model):
     from faster_whisper import WhisperModel
+    audio = path if isinstance(path, np.ndarray) else _wav_to_array(path)
     m = WhisperModel(model or DEFAULT_FW_MODEL, device="cpu", compute_type="int8")
     segments, info = m.transcribe(
-        path,
+        audio,
         language=language,
         initial_prompt=prompt,
         condition_on_previous_text=False,

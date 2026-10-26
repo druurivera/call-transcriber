@@ -6,7 +6,8 @@
 # BlackHole, install VB-Audio Virtual Cable, set it as your call app's output,
 # then record an Aggregate-style mix the same way: list devices, pick yours.
 #
-#   .\record.ps1 -Name "Arcenith" -Device "audio=Microphone Array"
+# Windows blocks running .ps1 files by default, so invoke it with:
+#   powershell -ExecutionPolicy Bypass -File .\record.ps1 -Name "Arcenith" -Device "audio=Microphone Array"
 
 param(
     [string]$Name = "call",
