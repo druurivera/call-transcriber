@@ -38,5 +38,19 @@ if not exist .env (
 )
 
 echo.
+echo Downloading the Whisper model and running a quick test (one-time, a few minutes)...
+set VAULT=%~dp0.setup-test
+.venv\Scripts\python.exe transcribe.py sample-call.wav --prospect "Setup Test"
+if errorlevel 1 (
+    echo.
+    echo Setup test failed, something above needs attention before you try a real call.
+) else (
+    echo.
+    echo Setup test passed, model is cached. You're ready.
+)
+rmdir /s /q "%~dp0.setup-test" 2>nul
+set VAULT=
+
+echo.
 echo Done. Drag an audio file onto process_call.bat to transcribe it.
 pause

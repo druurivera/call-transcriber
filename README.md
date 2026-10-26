@@ -10,7 +10,10 @@ leaves your machine. Two modes: a recording you already have, or live during the
 2. Double-click **`setup.command`**. If macOS says it's from an "unidentified
    developer" and won't open, **right-click it → Open** instead, then confirm. That's
    a one-time thing for any script downloaded from the internet, not specific to this
-   one. First run installs Homebrew packages, takes a few minutes; safe to run again.
+   one. Installs Homebrew (if you don't have it) and the required packages, then
+   downloads the Whisper model and runs a test transcription on a bundled sample
+   clip, so the model is already cached before you try it on a real call. Takes a
+   few minutes the first time; safe to run again later.
 3. To transcribe a call: drag the audio file onto **`Call Transcriber.app`**.
 
 **Windows**
@@ -18,12 +21,18 @@ leaves your machine. Two modes: a recording you already have, or live during the
 2. Double-click **`setup.bat`**. If "Windows protected your PC" (SmartScreen) shows
    up, click **More info → Run anyway**, that's a one-time thing for any script
    downloaded from the internet. If it installs Python/ffmpeg for the first time, it
-   will tell you to close the window and double-click it again, that's expected.
+   will tell you to close the window and double-click it again, that's expected. It
+   also downloads the Whisper model and runs a test transcription on a bundled
+   sample clip, so it's cached before your first real call.
 3. To transcribe a call: drag the audio file onto **`process_call.bat`**, type the
    prospect name when it asks, press Enter.
 
 That's it for most people. Everything below is the manual path (more control, needed
 for live mode and two-channel recording) or for troubleshooting the quick start.
+
+`sample-call.wav` in this repo is just the setup test clip (a few seconds, nothing
+sensitive), not a real call. The throwaway note it generates during setup is
+deleted automatically each run; the clip itself stays so setup can reuse it.
 
 ## Manual install
 
