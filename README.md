@@ -1,9 +1,27 @@
 # Call Transcriber
 
 Local Whisper transcription for discovery calls. Taglish aware. No API cost, nothing
-leaves the Mac. Two modes: a recording you already have, or live during the call.
+leaves your machine. Two modes: a recording you already have, or live during the call.
 
-## Install
+## Quick start (no terminal typing)
+
+**Mac**
+1. Download this repo as a zip (green "Code" button → "Download ZIP") and extract it.
+2. Double-click **`setup.command`**. First run installs Homebrew packages, takes a few
+   minutes; it's safe to run again later.
+3. To transcribe a call: drag the audio file onto **`Call Transcriber.app`**.
+
+**Windows**
+1. Download this repo as a zip and extract it.
+2. Double-click **`setup.bat`**. If it installs Python/ffmpeg for the first time, it
+   will tell you to close the window and double-click it again, that's expected.
+3. To transcribe a call: drag the audio file onto **`process_call.bat`**, type the
+   prospect name when it asks, press Enter.
+
+That's it for most people. Everything below is the manual path (more control, needed
+for live mode and two-channel recording) or for troubleshooting the quick start.
+
+## Manual install
 
 ### Mac
 
@@ -37,15 +55,15 @@ Everywhere below that says `./.venv/bin/python script.py`, run
 `record.sh`; the AppleScript droplet app (`Call Transcriber.app`) is Mac only.
 
 **Running the .ps1 scripts.** Windows blocks running `.ps1` files by default
-("running scripts is disabled on this system"). Don't change your system
-security policy for this, just run them with the bypass flag:
+("running scripts is disabled on this system"). `process_call.bat` and `record.bat`
+already handle this for you (drag a file onto `process_call.bat`, or double-click
+`record.bat`). Calling the `.ps1` files directly needs the bypass flag, this only
+affects that one invocation, nothing permanent gets changed:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\process_call.ps1 -Audio call.m4a -Prospect "Name"
 powershell -ExecutionPolicy Bypass -File .\record.ps1 -Name "Arcenith"
 ```
-
-This only affects that one invocation, nothing permanent gets changed.
 
 Model downloads itself on first run, about 1.6GB, cached in `~/.cache/huggingface`
 (`%USERPROFILE%\.cache\huggingface` on Windows).
