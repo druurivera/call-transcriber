@@ -1,0 +1,8 @@
+# Windows build. mlx-whisper is Apple Silicon only, so it's dropped here;
+# ENGINE=auto in engine.py already falls back to faster-whisper (CPU) when
+# mlx_whisper can't be imported, so no code changes are needed.
+faster-whisper>=1.0.0
+sounddevice>=0.4.6
+numpy>=1.26
+requests>=2.31
+python-dotenv>=1.0

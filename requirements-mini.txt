@@ -1,0 +1,7 @@
+# Mini PC build. No Apple Silicon, so mlx-whisper is dropped entirely.
+# No sounddevice/portaudio either, live.py needs a live mic and a headless
+# Docker container has none. This build is file mode plus analysis only.
+faster-whisper>=1.0.0
+numpy>=1.26
+requests>=2.31
+python-dotenv>=1.0
