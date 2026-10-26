@@ -7,13 +7,17 @@ leaves your machine. Two modes: a recording you already have, or live during the
 
 **Mac**
 1. Download this repo as a zip (green "Code" button → "Download ZIP") and extract it.
-2. Double-click **`setup.command`**. First run installs Homebrew packages, takes a few
-   minutes; it's safe to run again later.
+2. Double-click **`setup.command`**. If macOS says it's from an "unidentified
+   developer" and won't open, **right-click it → Open** instead, then confirm. That's
+   a one-time thing for any script downloaded from the internet, not specific to this
+   one. First run installs Homebrew packages, takes a few minutes; safe to run again.
 3. To transcribe a call: drag the audio file onto **`Call Transcriber.app`**.
 
 **Windows**
 1. Download this repo as a zip and extract it.
-2. Double-click **`setup.bat`**. If it installs Python/ffmpeg for the first time, it
+2. Double-click **`setup.bat`**. If "Windows protected your PC" (SmartScreen) shows
+   up, click **More info → Run anyway**, that's a one-time thing for any script
+   downloaded from the internet. If it installs Python/ffmpeg for the first time, it
    will tell you to close the window and double-click it again, that's expected.
 3. To transcribe a call: drag the audio file onto **`process_call.bat`**, type the
    prospect name when it asks, press Enter.
